@@ -32,12 +32,12 @@ class ContratoView(APIView):
 
         cliente = User.objects.get(id=cliente)
         gerente = User.objects.get(id=gerente)
-        menu = Menu.objects.get(id=menu)
+        #menu = Menu.objects.get(id=menu)
         montaje = Montaje.objects.get(id=montaje)
         restaurante = Restaurante.objects.get(id=restaurante)
         salon = Salon.objects.get(id=salon)
         
-        queryset = Contrato(Cliente= cliente, Gerente = gerente, Menu=menu, Montaje=montaje, Restaurante=restaurante, Salon=salon)
+        queryset = Contrato(Cliente= cliente, Gerente = gerente,  Montaje=montaje, Restaurante=restaurante, Salon=salon)
         queryset.save()
         serializer = ContratoSerializer(queryset, many = False, context={'request': request})
         return Response({"data":serializer.data}, status=status.HTTP_200_OK)
@@ -46,7 +46,7 @@ class DeleteContratoView(APIView):
     permission_classes = []
 
     def post(self, request):
-        id = request.data['Ingrediente']
-        queryset = Ingrediente.objects.get(id=id)
+        id = request.data['Contrato']
+        queryset = Contrato.objects.get(id=id)
         queryset.delete()
         return Response(status=status.HTTP_200_OK)
