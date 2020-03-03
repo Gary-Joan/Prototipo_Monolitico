@@ -23,7 +23,7 @@ class MontajeView(APIView):
         serializer = MontajeSerializer(queryset, many = False, context={'request': request})
         return Response({"data":serializer.data}, status=status.HTTP_200_OK)
 
-class DeleteRestauranteView(APIView):
+class DeleteMontajeView(APIView):
     permission_classes = []
 
     def post(self, request):
